@@ -29,7 +29,7 @@ public class Gesser
     {
         var result = Translates(word);
         var tasks = result.Select(GetDistances);
-        var resultsCollection =  await Task.WhenAll(tasks);
+        var resultsCollection = await Task.WhenAll(tasks);
         return resultsCollection.SelectMany(x => x).OrderBy(x => x.Item1).Take(5)
             .Select(x => (x.Item2, DataMoq.Datas[x.Item2]));
     }
@@ -56,7 +56,7 @@ public class Gesser
 
     private int GetDistance(string word, string data)
     {
-        throw new NotImplementedException();
+        return LevClass.DLevDistance(word, data);
     }
 
     private Task<IEnumerable<string>> GetSortedData(string word)
